@@ -1,8 +1,8 @@
-package theoryproj;
+package regex_checker;
 
-import theoryproj.KeyPair;
-import theoryproj.State;
-
+import regex_checker.KeyPair;
+import regex_checker.State;
+import java.util.*;
 
 /*
 	Class: MainChecker
@@ -12,16 +12,11 @@ import theoryproj.State;
 
 public class MainChecker {
 
-	//variables and such
-	
-	private State startState;
-	private List<State> whereIAm;
-	private List<State> whereIAmCopy;
-	private String inputString;
+
 	public static void main(String[] args) {
 		//initialize this stuff
-		whereIAm = new List<State>();
 		
+		String inputString = null;
 		if(args.length == 2){ //if they were brave enough to enter a bunch of states then we have 2 arguments. 
 			inputString = args[1]; //the first argument is the states they entered, the second is the string they want to check			
 		}
@@ -32,8 +27,12 @@ public class MainChecker {
 	}
 
 
-	public boolean NFAacceptW(State[] states){
-		char[] inputCharArray = inputString.toCharArray();
+	public boolean NFAacceptW(State[] states, String inputString){
+
+		List<State> whereIAmCopy = new ArrayList<State>();
+		State startState = null;
+		List<State> whereIAm = new ArrayList<State>();
+
 		for(State s : states){ //loop through all the states that were given to us
 			if(s.isStart && startState == null){ //take the first start state we come across as the one to start from
 				startState = s;
@@ -44,24 +43,28 @@ public class MainChecker {
 			}
 		}//end for-loop to find start state
 
-		for(char c : inputCharArray){ //loop to see where the currently read letter of our string can take us
+		for(int i = 0; i < inputString.length(); i++){ //loop to see where the currently read letter of our string can take us
+			char c = inputString.charAt(i); //iterate through each of the letters
+
 			whereIAmCopy = whereIAm;
 			whereIAm.clear();
 			for(State s : whereIAmCopy){ //for everystate where we currently are
 				
-				if(s.isAccept){
+				KeyPair[] reachableFromHere = s.reachableStates;
+
+				if(s.isAccept && i == inputString.length()){ //if we are in an accept state and we are at the end of the string accept
 					return true;
 				}
-				whereIAm = currentState.reachableStates;
-				 //reset the list
 
-				for(int i = 0; i < reachableFromHere; i++){
-					if(reachableFromHere[i].reachableBy == c){
-						whereIAm.add(reachableFromHere[i].reachableState);
+				for(int k = 0; k < reachableFromHere.length; k++){
+					if(reachableFromHere[k].reachableBy == c){
+						whereIAm.add(reachableFromHere[k].reachableState);
 					}
-				}
+				}//end inner for loop
 			}
-		}
+		}//end outer for loop
+
+		return false;
 	}
 
 }

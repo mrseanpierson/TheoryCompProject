@@ -1,6 +1,6 @@
-package theoryproj;
+package regex_checker;
 
-import theoryproj.KeyPair;
+import regex_checker.KeyPair;
 
 
 /*
@@ -28,11 +28,11 @@ import theoryproj.KeyPair;
 
 public class State{
 
-	private String stateName;
-	private KeyPair[] reachableStates;
-	private boolean isAccep;
-	private boolean isStart;
-
+		String stateName;
+		KeyPair[] reachableStates;
+		boolean isAccept;
+		boolean isStart;
+		
 	public State(String name, KeyPair[] reachableStateArray, boolean accept, boolean start){
 		this.stateName = name;
 		this.reachableStates = reachableStateArray;

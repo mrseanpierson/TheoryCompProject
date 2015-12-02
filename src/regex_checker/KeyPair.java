@@ -1,5 +1,6 @@
-package theoryproj;
+package regex_checker;
 
+import regex_checker.State;
 /*
 	Class: KeyPair
 	@author : Sean Pierson, Ryson Asuncion
@@ -19,10 +20,9 @@ package theoryproj;
 
 public class KeyPair{
 
-	private String reachableState;
-	private char reachableBy;
-
-	public KeyPair(String r, char c){
+	State reachableState;
+	char reachableBy;
+	public KeyPair(State r, char c){
 		this.reachableState = r;
 		this.reachableBy = c;
 	}
