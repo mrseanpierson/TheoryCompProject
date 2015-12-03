@@ -1,0 +1,1 @@
+(q0, [{a, q1}, {a, q5}, {b, q3}], false, true), (q1, [{a, q2}], false, false), (q2, [{a, q7}], false, false), (q3, [{a, q4}], false, false), (q4, [{b, q7}], false, false), (q5, [{b, q6}], false, false), (q6, [{a, q7}], false, false), (q7, [{a, q7}, {b, q7}], true, false)

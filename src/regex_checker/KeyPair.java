@@ -20,9 +20,9 @@ import regex_checker.State;
 
 public class KeyPair{
 
-	State reachableState;
+	String reachableState;
 	char reachableBy;
-	public KeyPair(State r, char c){
+	public KeyPair(String r, char c){
 		this.reachableState = r;
 		this.reachableBy = c;
 	}
